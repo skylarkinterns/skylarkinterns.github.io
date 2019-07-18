@@ -62,15 +62,15 @@
     							<div class="icon d-flex justify-content-center align-items-center">
     								
     							</div>
-    							 <form action="#" method="post" class="bg-light p-5 contact-form">
+    							 <form action="send_mail.php" method="post" class="bg-light p-5 contact-form">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Name">
+                <input type="text" class="form-control"  name="name"placeholder="Your Name">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Email">
+                <input type="email" name="email" class="form-control" placeholder="Your Email">
               </div>
               <div class="form-group">
-                <select class="form-control">
+                <select class="form-control" name="faculty">
                   <option>faculty</option>
                   <option>Medical</option>
                   <option>Nursing</option>
@@ -80,7 +80,7 @@
                   <option>Other</option></select>
               </div>
             <div class="form-group">
-                <select class="form-control">
+                <select class="form-control" name="destination">
                   <option>choose Destination</option>
                   <option>Mombasa</option>
                   <option>Malindi</option>
@@ -93,22 +93,9 @@
                     <option>Kampala</option>
                 </select>
               </div>
-                <div class="form-group">
-                <select class="form-control">
-                  <option>choose Destination</option>
-                  <option>Mombasa</option>
-                  <option>Malindi</option>
-                  <option>Migori</option>
-                  <option>Nairobi</option>
-                  <option>Kisumu</option>
-                  <option>Kakamega</option>
-                    <option>Moshi</option>
-                    <option>Arusha</option>
-                    <option>Kampala</option>
-                </select>
-              </div>
+                
             <div class="form-group">
-                <select class="form-control">
+                <select class="form-control" name="duration">
                   <option>choose Duration</option>
                   <option>2 Weeks</option>
                   <option>3 Weeks</option>
