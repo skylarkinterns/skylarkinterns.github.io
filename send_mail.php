@@ -1,80 +1,37 @@
 <?php
-/*
-This first bit sets the email address that you want the form to be submitted to.
-You will need to change this value to a valid email address that you can access.
-*/
-$webmaster_email = "ochiengwarren3@gmail.com";
 
-/*
-This bit sets the URLs of the supporting pages.
-If you change the names of any of the pages, you will need to change the values here.
-*/
-$feedback_page = "apply.html";
-$error_page = "error_message.html";
-$thankyou_page = "paypal.html";
+    $to = "ochiengwarren10@gmail.com";
+    $from = $_REQUEST['email'];
+    $name = $_REQUEST['name'];
+    $destination = $_REQUEST['destination'];
+    $duration = $_REQUEST['duration'];
+   
 
-/*
-This next bit loads the form field data into variables.
-If you add a form field, you will need to add it here.
-*/
-$email = $_REQUEST['email'] ;
-$name = $_REQUEST['name'] ;
-$duration = $_REQUEST['duration'] ;
+    $headers = "From: $from";
+	$headers = "From: " . $from . "\r\n";
+	$headers .= "Reply-To: ". $from . "\r\n";
+	$headers .= "MIME-Version: 1.0\r\n";
+	$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
-$destination = $_REQUEST['destination'] ;
-$msg = 
-"name: " . $name . "\r\n" . 
-"email: " . $email . "\r\n" .
- "destination: " . $destination . "\r\n" . 
-"duration: " . $duration;
+    $subject = "You have a message from your Bitmap Photography.";
 
+    $logo = 'images/skylark logo.jpg';
+    $link = '#';
 
-/*
-The following function checks for email injection.
-Specifically, it checks for carriage returns - typically used by spammers to inject a CC list.
-*/
-function isInjected($str) {
-	$injections = array('(\n+)',
-	'(\r+)',
-	'(\t+)',
-	'(%0A+)',
-	'(%0D+)',
-	'(%08+)',
-	'(%09+)'
-	);
-	$inject = join('|', $injections);
-	$inject = "/$inject/i";
-	if(preg_match($inject,$str)) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
+	$body = "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><title>Express Mail</title></head><body>";
+	$body .= "<table style='width: 100%;'>";
+	$body .= "<thead style='text-align: center;'><tr><td style='border:none;' colspan='2'>";
+	$body .= "<a href='{$link}'><img src='{$logo}' alt=''></a><br><br>";
+	$body .= "</td></tr></thead><tbody><tr>";
+	$body .= "<td style='border:none;'><strong>Name:</strong> {$name}</td>";
+	$body .= "<td style='border:none;'><strong>Email:</strong> {$from}</td>";
+	$body .= "</tr>";
+	$body .= "<tr><td style='border:none;'><strong>Subject:</strong> {$destination}</td></tr>";
+	$body .= "<tr><td></td></tr>";
+	$body .= "<tr><td colspan='2' style='border:none;'>{$duration}</td></tr>";
+	$body .= "</tbody></table>";
+	$body .= "</body></html>";
 
-// If the user tries to access this script directly, redirect them to the feedback form,
-if (!isset($_REQUEST['email'])) {
-header( "Location: $feedback_page" );
-}
+    $send = mail($to, $duration, $body, $headers);
 
-// If the form fields are empty, redirect to the error page.
-elseif (empty($name) || empty($email)) {
-header( "Location: $error_page" );
-}
-
-/* 
-If email injection is detected, redirect to the error page.
-If you add a form field, you should add it here.
-*/
-elseif ( isInjected($email) || isInjected($name)  ||isInjected($duration)  || isInjected($destination) ) {
-header( "Location: $error_page" );
-}
-
-// If we passed all previous tests, send the email then redirect to the thank you page.
-else {
-
-	mail( "$webmaster_email", "Feedback Form Results", $msg );
-
-	header( "Location: $thankyou_page" );
-}
 ?>
