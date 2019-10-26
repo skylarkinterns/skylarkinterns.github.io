@@ -55,7 +55,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  color: #000000;
   text-align: left;
   background-color: #fff; }
 
@@ -8000,7 +8000,7 @@ body {
   font-size: 16px;
   line-height: 1.8;
   font-weight: 400;
-  color: #999999; }
+  color: #000000; }
   body.menu-show {
     overflow: hidden;
     position: fixed;
@@ -9432,7 +9432,7 @@ textarea.form-control {
       padding-left: 120px !important;
       margin-left: -120px; } }
   .ftco-counter .text p {
-    font-size: 24px;
+    font-size: 64px;
     line-height: 1; }
   .ftco-counter .text span.number {
     font-weight: 400;
@@ -9488,8 +9488,8 @@ textarea.form-control {
     width: 100%;
     margin: 0 auto; }
     .blog-entry .text .heading {
-      font-size: 20px;
-      margin-bottom: 16px;
+      font-size: 50px;
+      margin-bottom: 20px;
       font-weight: 500; }
       .blog-entry .text .heading a {
         color: #000000; }
